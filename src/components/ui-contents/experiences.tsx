@@ -136,7 +136,7 @@ export default function ExperienceNodes({ isHomePage }: ExperienceNodesProps) {
 
   return (
     <section
-      className={`relative mx-auto px-4 ${isHomePage ? "max-w-6xl" : "max-w-7xl pt-16 h-screen"} `}
+      className={`relative mx-auto px-4 ${isHomePage ? "max-w-6xl" : "max-w-7xl pt-16 h-screen  !bg-gradient-to-b from-[#0b0b12] via-[#0f0f1a] to-[#0b0b12]"} `}
     >
       {isHomePage && (
         <motion.h2

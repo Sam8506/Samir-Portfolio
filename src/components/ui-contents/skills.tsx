@@ -142,7 +142,7 @@ export default function SkillsShowcase() {
   const activeCategory = categories.find((c) => c.title === active)!;
 
   return (
-    <section className="mx-auto max-w-6xl h-screen px-6 py-16 flex flex-col gap-12">
+    <section className="mx-auto max-w-6xl h-screen  !bg-gradient-to-b from-[#0b0b12] via-[#0f0f1a] to-[#0b0b12] px-6 py-16 flex flex-col gap-12">
       <div className="flex gap-x-4 mt-10">
         {/* Sidebar */}
         <div className="flex flex-col gap-4 w-48 border-r border-gray-700 pr-6">

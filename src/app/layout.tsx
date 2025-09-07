@@ -28,7 +28,7 @@ export default function RootLayout({
         </noscript>
 
           <Navbar />
-          <div className="mt-10  !bg-gradient-to-b from-[#0b0b12] via-[#0f0f1a] to-[#0b0b12]">{children}</div>
+          <div className="mt-10">{children}</div>
       </body>
     </html>
   );
