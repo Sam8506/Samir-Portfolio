@@ -41,7 +41,7 @@ export default function Navbar() {
   return (
     <header className="fixed top-0 w-full z-50">
       {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-r from-slate-900/80 via-gray-900/70 to-slate-900/80 backdrop-blur-2xl border-b border-white/5" />
+      <div className="absolute inset-0 !bg-gradient-to-r from-slate-900/80 via-gray-900/70 to-slate-900/80 backdrop-blur-2xl border-b border-white/5" />
 
       <div className="relative mx-auto max-w-7xl px-6 flex items-center justify-between py-4">
         {/* Logo */}
