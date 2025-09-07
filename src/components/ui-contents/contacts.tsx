@@ -26,7 +26,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="relative mx-auto max-w-2xl h-screen px-6 py-32  !bg-gradient-to-b from-[#0b0b12] via-[#0f0f1a] to-[#0b0b12]">
+    <section id="contact" className="relative mx-auto max-w-2xl h-screen px-6 py-32 overflow-hidden  !bg-gradient-to-b from-[#0b0b12] via-[#0f0f1a] to-[#0b0b12]">
       {/* Floating background elements */}
       <div className="absolute -top-8 -right-8 w-32 h-32 bg-gradient-to-r from-violet-500/20 to-pink-500/20 rounded-full blur-2xl animate-pulse" />
       <div className="absolute -bottom-8 -left-8 w-24 h-24 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-full blur-2xl animate-pulse delay-1000" />
