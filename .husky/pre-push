@@ -1,0 +1,10 @@
+#!/bin/sh
+
+echo "📦 Hold your seat tight, Running Next.js build check..."
+
+if ! npx next build > /dev/null 2>&1; then
+  echo "❌ Build failed! You shall not push. 💥"
+  exit 1
+fi
+
+echo "Build passed! SamzZ you are awesome 🚀"

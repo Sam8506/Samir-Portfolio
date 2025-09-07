@@ -1,0 +1,38 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+echo "🧪 Running pre-push checks..."
+
+# Step 1: Type check
+echo "🔍 Running TypeScript check..."
+npx tsc --noEmit
+if [ $? -ne 0 ]; then
+  echo "❌ TypeScript check failed!"
+  exit 1
+fi
+
+# Step 2: Lint check
+echo "🧹 Running linter..."
+npx eslint . --ext .js,.ts,.jsx,.tsx
+if [ $? -ne 0 ]; then
+  echo "❌ Lint errors found!"
+  exit 1
+fi
+
+echo "Formatting code with Prettier..."
+# Step 3: Prettier formatting
+npm run format
+if [ $? -ne 0 ]; then
+  echo "❌ Prettier formatting failed!"
+  exit 1
+fi
+
+# 4. Prettier formatting
+echo "🎨 Checking code format with Prettier..."
+npx prettier --check .
+if [ $? -ne 0 ]; then
+  echo "❌ Prettier formatting issues found. Run 'npm run format'."
+  exit 1
+fi
+
+echo "✅ All pre-push checks passed! SamzZ you are good to go! 🚀"
