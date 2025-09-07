@@ -27,15 +27,9 @@ export default function RootLayout({
             style={{ display: "none", visibility: "hidden" }}
           />
         </noscript>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
+
           <Navbar />
-          <div className="mt-10">{children}</div>
-        </ThemeProvider>
+          <div className="mt-10  !bg-gradient-to-b from-[#0b0b12] via-[#0f0f1a] to-[#0b0b12]">{children}</div>
       </body>
     </html>
   );
