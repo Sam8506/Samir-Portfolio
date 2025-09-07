@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { GoogleTagManager } from "@next/third-parties/google";
-import { ThemeProvider } from "@/components/theme-provider";
 import Navbar from "@/components/ui-contents/nav-bar";
 
 export const metadata: Metadata = {
