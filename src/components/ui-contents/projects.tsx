@@ -74,7 +74,7 @@ export default function Projects(props: { isHomePage?: boolean }) {
     : projects;
 
   return (
-    <section id="projects" className="mx-auto max-w-6xl px-4  !bg-gradient-to-b from-[#0b0b12] via-[#0f0f1a] to-[#0b0b12]">
+    <section id="projects" className="mx-auto max-w-6xl px-4 ">
       <h2 className="text-3xl font-bold mb-8 text-white tracking-wide">
         {isHomePage ? "Highlighted Projects" : "All Projects"}
       </h2>
