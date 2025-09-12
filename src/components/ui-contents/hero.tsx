@@ -53,12 +53,12 @@ export default function Hero() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <a
-                href="#contact"
+              <Link
+                href="/contact"
                 className="rounded-2xl px-5 py-3 bg-gradient-to-r from-fuchsia-500 to-indigo-500 hover:opacity-90"
               >
                 Get in Touch
-              </a>
+              </Link>
             </motion.div>
           </div>
         </div>

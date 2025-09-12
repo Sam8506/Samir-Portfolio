@@ -56,13 +56,13 @@ export default function IntroDemo() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-sm p-4"
+            className="fixed inset-0 !z-99 flex items-center justify-center bg-black/95 backdrop-blur-sm p-4"
           >
             <div className="relative w-fit h-[80vh]">
               {/* Close Button */}
               <button
                 onClick={() => setIsOpen(false)}
-                className="absolute right-2 z-50 text-white text-3xl font-bold hover:text-cyan-400 transition-colors"
+                className="absolute right-2 !z-99 text-white text-3xl font-bold hover:text-cyan-400 transition-colors"
               >
                 &times;
               </button>

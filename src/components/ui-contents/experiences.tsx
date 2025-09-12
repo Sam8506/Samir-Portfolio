@@ -2,9 +2,11 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 
 type Experience = {
   id: string;
+  companyUrl: string;
   role: string;
   company: string;
   period: string;
@@ -12,6 +14,8 @@ type Experience = {
   tech: string[];
   nodeName: string;
   color: string;
+  projects?: {name:string, url:string}[]
+
 };
 
 const experiences: Experience[] = [
@@ -19,12 +23,14 @@ const experiences: Experience[] = [
     id: "exp1",
     nodeName: "SDE 1",
     role: "SDE 1",
+    companyUrl: "https://www.talentsystems.com/",
     company: "Talent Systems, LLC",
     period: "Jan 2024 – Present",
     description: [
       "Migrated media management from Cloudinary to AWS, optimizing performance and scalability.",
+      "Larger media files now render 30% faster on first load, and storage plus media transformation costs have been reduced by 50% compared to before",
       "Transitioned frontend architecture to a MonoRepo for better maintainability.",
-      "Reduced Docker image sizes, improving build efficiency and speeding up deployments.",
+      "Reduced Docker image sizes by 67%, improving build efficiency and speeding up deployments.",
       "Participated in database design, requirement gathering, and workflow planning.",
       "Designed and implemented PayPal and Apple Pay flows with VISA compliance, DPAN, and MPAN handling.",
       "Implemented fraud detection measures to strengthen transaction security.",
@@ -32,11 +38,13 @@ const experiences: Experience[] = [
     ],
     tech: ["NestJS", "NextJS", "PostgreSQL", "AWS", "Swift", "Ktor"],
     color: "blue",
+    projects: [{name: "Casting Networks", url: "https://www.castingnetworks.com/"}, {name:"StaffMeUp",url:"https://staffmeup.com/"},]
   },
   {
     id: "exp2",
     nodeName: "SDE Intern",
     role: "SDE Intern",
+    companyUrl: "https://www.talentsystems.com/",
     company: "Talent Systems, LLC",
     period: "Jul 2023 – Dec 2023",
     description: [
@@ -45,12 +53,14 @@ const experiences: Experience[] = [
     ],
     tech: ["NestJS", "Next.js", "AWS"],
     color: "purple",
+    projects: [ {name:"Spotlight One",url:"https://spotlightone.com/"}]
   },
   {
     id: "exp3",
     nodeName: "Project Manager Intern",
     role: "Flutter Project Manager Intern",
     company: "Agevole Innovation Pvt. Ltd.",
+    companyUrl: "https://agevole.in/",
     period: "May 2023 – Jun 2023",
     description: [
       "Led and mentored a team of interns, managing two internal impactful Flutter projects.",
@@ -65,6 +75,7 @@ const experiences: Experience[] = [
     id: "exp4",
     nodeName: "Full stack Developer",
     role: "Full-Stack Developer",
+    companyUrl:"https://www.linkedin.com/company/cldccharusat",
     company: "Charusat Learning and Development Club",
     period: "Apr 2023 – Sep 2023",
     description: [
@@ -79,6 +90,7 @@ const experiences: Experience[] = [
     id: "exp5",
     nodeName: "Mobile Dev Intern",
     role: "Mobile Development Intern",
+    companyUrl:"https://kintudesigns.com/index.html",
     company: "Kintu Designs Pvt. Ltd.",
     period: "May 2022 – Jun 2022",
     description: [
@@ -136,7 +148,7 @@ export default function ExperienceNodes({ isHomePage }: ExperienceNodesProps) {
 
   return (
     <section
-      className={`relative mx-auto px-4 ${isHomePage ? "max-w-6xl" : "max-w-7xl pt-16 h-screen  !bg-gradient-to-b from-[#0b0b12] via-[#0f0f1a] to-[#0b0b12]"} `}
+      className={`relative mx-auto px-4 ${isHomePage ? "max-w-6xl" : "max-w-7xl pt-16 min-h-screen  !bg-gradient-to-b from-[#0b0b12] via-[#0f0f1a] to-[#0b0b12]"} `}
     >
       {isHomePage && (
         <motion.h2
@@ -166,7 +178,8 @@ export default function ExperienceNodes({ isHomePage }: ExperienceNodesProps) {
                 {experiences.map((exp, index) => (
                   <motion.button
                     key={exp.id + index}
-                    className={`relative w-full text-left p-4 rounded-xl transition-all duration-300 group
+                    role="button"
+                    className={`relative cursor-pointer w-full text-left p-4 rounded-xl transition-all duration-300 group
                       ${
                         active?.id === exp.id
                           ? `${getColorClasses(exp.color, "bg")} border ${getColorClasses(exp.color, "border")}`
@@ -237,14 +250,16 @@ export default function ExperienceNodes({ isHomePage }: ExperienceNodesProps) {
                     <h2 className="text-3xl font-bold text-white tracking-tight">
                       {active.role}
                     </h2>
-                    <p
+                    <Link
+                    href={active.companyUrl}
+                    target="_blank"
                       className={`text-lg font-medium ${getColorClasses(
                         active.color,
                         "text",
                       )} mt-1`}
                     >
                       {active.company}
-                    </p>
+                    </Link>
                     <p className="text-sm text-gray-400 mt-2">
                       {active.period}
                     </p>
@@ -270,10 +285,33 @@ export default function ExperienceNodes({ isHomePage }: ExperienceNodesProps) {
                     </div>
                   </div>
                 </div>
+                {/* Projects */}
+                {active.projects && active.projects.length > 0 && (
+                  <div className="my-6 flex flex-col md:flex-row gap-2 ">
+                     <h3 className="font-semibold text-white text-lg  flex items-center gap-2">
+                        Product Experience 
+                      </h3>
+                    <div className="flex  items-center  gap-2">
+                      {active.projects.map((p, idx) => (
+                        <motion.a
+                          key={idx}
+                          href={p.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="px-3 py-1 text-xs rounded-full underline bg-gradient-to-r from-gray-800/80 to-gray-900/80 border border-gray-700 text-gray-300 hover:from-fuchsia-600/20 hover:to-purple-600/20 hover:border-fuchsia-500/40 transition"                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                        >
+                          {p.name}
+                        </motion.a>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
 
                 {/* Key Achievements */}
                 <div>
-                  <h3 className="font-semibold text-white text-lg mb-5 flex items-center gap-2">
+                  <h3 className="font-semibold text-white text-lg my-5 flex items-center gap-2">
                     Key Contributions
                   </h3>
                   <div className="space-y-4">

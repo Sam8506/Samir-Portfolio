@@ -100,7 +100,8 @@ export default function Projects(props: { isHomePage?: boolean }) {
                   width={500}
                   height={250}
                   alt={p.title}
-                  className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
+                  priority
+                  className="object-cover w-full h-auto md:h-full group-hover:scale-105 transition-transform duration-500"
                 />
               ) : (
                 <span className="text-white/40 ">🔒</span>
