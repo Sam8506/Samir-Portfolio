@@ -65,4 +65,8 @@ export enum ANALYTICS_EVENTS {
   LINKEDIN_PROFILE_CLICKED = "linkedin-profile-clicked",
   EMAIL_COPIED = "email-copied",
   PHONE_COPIED = "phone-copied",
+
+  // Ai CHAT
+  AI_CHAT_OPEN = "open-ai-chat",
+  SEND_AI_MESSAGE = "send-ai-message"
 }

@@ -3,6 +3,7 @@ import "./globals.css";
 import { GoogleTagManager } from "@next/third-parties/google";
 import Script from "next/script";
 import Navbar from "@/components/ui-contents/nav-bar";
+import ChatWidget from "@/components/ui-contents/chat-widget";
 
 
 export const metadata: Metadata = {
@@ -57,6 +58,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const gtmId = "GTM-NNC9GLFD";
+  const isAIChatEnable =(process.env.NEXT_PUBLIC_CHAT_ENABLE) === "0" ? false : true ; 
+
   return (
     <html lang="en">
       <GoogleTagManager gtmId={gtmId} />
@@ -72,6 +75,8 @@ export default function RootLayout({
 
           <Navbar />
           <div className="mt-10  !bg-gradient-to-b from-[#0b0b12] via-[#0f0f1a] to-[#0b0b12]">{children}</div>
+          {isAIChatEnable && <ChatWidget/>}
+
           <Script
           id="structured-data-person"
           type="application/ld+json"

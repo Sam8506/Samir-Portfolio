@@ -76,7 +76,7 @@ const eslintConfig = [
           aspects: ["invalidHref", "preferButton"],
         },
       ],
-      "linebreak-style": ["error", "unix"],
+      "linebreak-style": ["off"],
       "no-console": ["error", { allow: ["warn", "error"] }],
       "no-promise-executor-return": "warn",
       "no-prototype-builtins": "off",

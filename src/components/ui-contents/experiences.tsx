@@ -19,13 +19,13 @@ type Experience = {
 };
 
 const experiences: Experience[] = [
-  {
+   {
     id: "exp1",
-    nodeName: "SDE 1",
-    role: "SDE 1",
+    nodeName: "Software Engineer",
+    role: "Software Engineer",
     companyUrl: "https://www.talentsystems.com/",
     company: "Talent Systems, LLC",
-    period: "Jan 2024 – Present",
+    period: "Nov 2025 – Present",
     description: [
       "Migrated media management from Cloudinary to AWS, optimizing performance and scalability.",
       "Larger media files now render 30% faster on first load, and storage plus media transformation costs have been reduced by 50% compared to before",
@@ -42,6 +42,27 @@ const experiences: Experience[] = [
   },
   {
     id: "exp2",
+    nodeName: "Jr. Software Engineer",
+    role: "Jr. Software Engineer",
+    companyUrl: "https://www.talentsystems.com/",
+    company: "Talent Systems, LLC",
+    period: "Jan 2024 – Oct 2025",
+    description: [
+      "Migrated media management from Cloudinary to AWS, optimizing performance and scalability.",
+      "Larger media files now render 30% faster on first load, and storage plus media transformation costs have been reduced by 50% compared to before",
+      "Transitioned frontend architecture to a MonoRepo for better maintainability.",
+      "Reduced Docker image sizes by 67%, improving build efficiency and speeding up deployments.",
+      "Participated in database design, requirement gathering, and workflow planning.",
+      "Designed and implemented PayPal and Apple Pay flows with VISA compliance, DPAN, and MPAN handling.",
+      "Implemented fraud detection measures to strengthen transaction security.",
+      "Developed media processing pipelines with AWS Elemental for efficient video processing.",
+    ],
+    tech: ["NestJS", "NextJS", "PostgreSQL", "AWS", "Swift", "Ktor"],
+    color: "blue",
+    projects: [{name: "Casting Networks", url: "https://www.castingnetworks.com/"}, {name:"StaffMeUp",url:"https://staffmeup.com/"},]
+  },
+  {
+    id: "exp3",
     nodeName: "SDE Intern",
     role: "SDE Intern",
     companyUrl: "https://www.talentsystems.com/",
@@ -56,7 +77,7 @@ const experiences: Experience[] = [
     projects: [ {name:"Spotlight One",url:"https://spotlightone.com/"}]
   },
   {
-    id: "exp3",
+    id: "exp4",
     nodeName: "Project Manager Intern",
     role: "Flutter Project Manager Intern",
     company: "Agevole Innovation Pvt. Ltd.",
@@ -72,7 +93,7 @@ const experiences: Experience[] = [
     color: "green",
   },
   {
-    id: "exp4",
+    id: "exp5",
     nodeName: "Full stack Developer",
     role: "Full-Stack Developer",
     companyUrl:"https://www.linkedin.com/company/cldccharusat",
@@ -87,7 +108,7 @@ const experiences: Experience[] = [
     color: "orange",
   },
   {
-    id: "exp5",
+    id: "exp6",
     nodeName: "Mobile Dev Intern",
     role: "Mobile Development Intern",
     companyUrl:"https://kintudesigns.com/index.html",
