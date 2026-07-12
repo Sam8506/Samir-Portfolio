@@ -1,13 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FaLinkedin, FaEnvelope } from "react-icons/fa";
+import { FaLinkedin, FaEnvelope, FaGithub } from "react-icons/fa";
 import { useState } from "react";
 import { XIcon } from "lucide-react";
 import { ANALYTICS_EVENTS, sendGTMEvent } from "@/lib/utils";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-function MagneticIcon({ social, delay }: { social: any; delay: number }) {
+function SocialIcon({ social, delay }: { social: any; delay: number }) {
   const [hovered, setHovered] = useState(false);
 
   return (
@@ -18,38 +18,30 @@ function MagneticIcon({ social, delay }: { social: any; delay: number }) {
       }}
       target="_blank"
       rel="noopener noreferrer"
-      initial={{ opacity: 0, x: -20 }}
+      initial={{ opacity: 0, x: -10 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ delay }}
-      whileHover={{ scale: 1.15 }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className="group relative flex items-center justify-center w-14 h-14 rounded-xl
-                 bg-gradient-to-br from-gray-800 via-gray-900 to-black
-                 border border-gray-700 shadow-sm
-                 hover:border-indigo-500/50 hover:shadow-md hover:shadow-indigo-500/10
-                 transition-all duration-500"
+      className="group relative flex items-center justify-center w-11 h-11 rounded-md
+                 bg-console-panel border border-console-border
+                 hover:border-console-amber/50
+                 transition-colors duration-200"
     >
-      {/* Icon */}
-      <motion.span
-        animate={{
-          scale: hovered ? 1.2 : 1,
-          rotate: hovered ? 8 : 0,
-        }}
-        transition={{ type: "spring", stiffness: 200, damping: 12 }}
-        className="text-2xl text-indigo-300"
+      <span
+        className={`text-lg transition-colors duration-200 ${hovered ? "text-console-amber" : "text-console-muted"}`}
       >
         {social.icon}
-      </motion.span>
+      </span>
 
       {/* Tooltip */}
       <motion.span
-        initial={{ opacity: 0, x: -10 }}
-        animate={{ opacity: hovered ? 1 : 0, x: hovered ? 0 : -10 }}
-        transition={{ duration: 0.3 }}
-        className="absolute left-16 px-3 py-1 rounded-lg 
-                   bg-gray-800/90 border border-gray-700 shadow-sm backdrop-blur
-                   text-indigo-200 text-sm font-medium"
+        initial={{ opacity: 0, x: -8 }}
+        animate={{ opacity: hovered ? 1 : 0, x: hovered ? 0 : -8 }}
+        transition={{ duration: 0.2 }}
+        className="absolute left-14 whitespace-nowrap px-2.5 py-1 rounded
+                   bg-console-panel border border-console-border
+                   text-console-amber text-xs font-mono pointer-events-none"
       >
         {social.label}
       </motion.span>
@@ -60,35 +52,36 @@ function MagneticIcon({ social, delay }: { social: any; delay: number }) {
 export default function SocialSidebar() {
   const socials = [
     {
-      id: "linkedin",
+      id: "1",
       icon: <FaLinkedin />,
       href: "https://www.linkedin.com/in/samir-patel90/",
-      label: "LinkedIn",
+      label: "linkedin",
     },
     {
-      id: "twitter",
-      icon: <XIcon />,
+      id: "2",
+      icon: <XIcon size={17} />,
       href: "https://x.com/SamzZ8506",
-      label: "Twitter",
+      label: "twitter",
     },
     {
-      id: "email",
+      id: "3",
       icon: <FaEnvelope />,
       href: "mailto:samirpatel8506@gmail.com",
-      label: "Email",
+      label: "email",
+    },
+    {
+      id: "4",
+      icon: <FaGithub />,
+      href: "https://github.com/Patel-Samir",
+      label: "github",
     },
   ];
 
   return (
-    <motion.div
-      initial={{ y: -8 }}
-      animate={{ y: [0, -8, 0] }}
-      transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-      className="fixed left-6 top-1/2 -translate-y-1/2 hidden md:flex flex-col gap-6 z-50"
-    >
+    <div className="fixed left-6 top-1/2 -translate-y-1/2 hidden md:flex flex-col gap-3 z-50">
       {socials.map((social, idx) => (
-        <MagneticIcon key={social.id} social={social} delay={idx * 0.15} />
+        <SocialIcon key={social.id} social={social} delay={idx * 0.2} />
       ))}
-    </motion.div>
+    </div>
   );
 }

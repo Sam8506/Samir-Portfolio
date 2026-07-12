@@ -12,185 +12,249 @@ import {
   SiSwift,
   SiXcode,
   SiJira,
-  SiPostman,
   SiTailwindcss,
 } from "react-icons/si";
 import { DiVisualstudio } from "react-icons/di";
+import { RiCursorAiFill, RiClaudeFill } from "react-icons/ri";
 
-type Skill = { name: string; icon: React.ReactNode; description: string };
-type Category = { title: string; skills: Skill[] };
+type Skill = {
+  name: string;
+  icon: React.ReactNode;
+  description: string;
+  id: string;
+};
+type Category = { title: string; path: string; skills: Skill[] };
 
 const categories: Category[] = [
   {
-    title: "Web Development",
+    title: "web-development",
+    path: "~/skills/web-development",
     skills: [
       {
         name: "NestJS",
-        icon: <SiNestjs className="text-red-600" />,
+        icon: <SiNestjs />,
         description: "Robust, enterprise-ready backend framework.",
+        id: "0x01",
       },
       {
         name: "Next.js",
-        icon: <SiNextdotjs className="text-white dark:text-white" />,
+        icon: <SiNextdotjs />,
         description: "Full-stack framework with SSR, SSG, and App Router.",
+        id: "0x02",
       },
       {
         name: "Node.js",
-        icon: <FaNodeJs className="text-green-500" />,
-        description: "Scalable APIs and services built with Node.js.",
+        icon: <FaNodeJs />,
+        description: "Scalable APIs and services built on the event loop.",
+        id: "0x03",
       },
       {
         name: "React",
-        icon: <FaReact className="text-sky-400" />,
-        description: "Modern UI development with hooks and animations.",
+        icon: <FaReact />,
+        description: "Component-driven UI with hooks and composition.",
+        id: "0x04",
       },
       {
         name: "Redux",
-        icon: <SiRedux className="text-purple-600" />,
-        description: "Predictable and centralized state management.",
+        icon: <SiRedux />,
+        description: "Predictable, centralized state management.",
+        id: "0x05",
       },
       {
         name: "TailwindCSS",
-        icon: <SiTailwindcss className="text-teal-400" />,
-        description: "Utility-first CSS for sleek, responsive designs.",
+        icon: <SiTailwindcss />,
+        description: "Utility-first styling, no context switching.",
+        id: "0x06",
       },
     ],
   },
   {
-    title: "App Development",
+    title: "app-development",
+    path: "~/skills/app-development",
     skills: [
       {
         name: "Swift",
-        icon: <SiSwift className="text-orange-500" />,
+        icon: <SiSwift />,
         description: "Native iOS development with Swift & UIKit.",
+        id: "0x07",
       },
       {
         name: "Flutter",
-        icon: <SiFlutter className="text-blue-400" />,
+        icon: <SiFlutter />,
         description: "Cross-platform apps powered by Dart.",
+        id: "0x08",
       },
       {
         name: "Xcode",
-        icon: <SiXcode className="text-sky-600" />,
-        description: "Apple’s IDE for iOS and macOS apps.",
+        icon: <SiXcode />,
+        description: "Apple's IDE for iOS and macOS builds.",
+        id: "0x09",
       },
     ],
   },
   {
-    title: "Database",
+    title: "database",
+    path: "~/skills/database",
     skills: [
       {
         name: "PostgreSQL",
-        icon: <SiPostgresql className="text-blue-700" />,
-        description:
-          "Advanced relational database with strong ACID compliance.",
+        icon: <SiPostgresql />,
+        description: "Relational store, strong ACID guarantees.",
+        id: "0x0A",
       },
       {
         name: "MongoDB",
-        icon: <SiMongodb className="text-green-600" />,
-        description: "NoSQL database for flexible, scalable data models.",
+        icon: <SiMongodb />,
+        description: "Document store for flexible schemas.",
+        id: "0x0B",
       },
       {
         name: "Redis",
-        icon: <SiRedis className="text-red-500" />,
-        description:
-          "In-memory store for caching and high-performance workloads.",
+        icon: <SiRedis />,
+        description: "In-memory cache and queue backing.",
+        id: "0x0C",
       },
     ],
   },
   {
-    title: "Cloud",
+    title: "cloud",
+    path: "~/skills/cloud",
     skills: [
       {
         name: "AWS",
-        icon: <FaAws className="text-orange-400" />,
-        description: "Cloud solutions with Lambda, S3, CloudFront, and EC2.",
+        icon: <FaAws />,
+        description: "Lambda, S3, CloudFront, EC2 — deployed and monitored.",
+        id: "0x0D",
       },
     ],
   },
   {
-    title: "Tools",
+    title: "tools",
+    path: "~/skills/tools",
     skills: [
       {
         name: "VS Code",
-        icon: <DiVisualstudio className="text-blue-500" />,
-        description: "Lightweight and versatile code editor.",
+        icon: <DiVisualstudio />,
+        description: "Primary editor, daily driver.",
+        id: "0x0E",
+      },
+      {
+        name: "Cursor",
+        icon: <RiCursorAiFill />,
+        description: "AI-assisted editing for fast iteration.",
+        id: "0x0F",
+      },
+      {
+        name: "Claude Code",
+        icon: <RiClaudeFill />,
+        description: "Agentic terminal workflows for larger changes.",
+        id: "0x10",
       },
       {
         name: "GitHub",
-        icon: <FaGithub className="text-black dark:text-white" />,
-        description: "Collaboration, version control, and CI/CD pipelines.",
-      },
-      {
-        name: "Postman",
-        icon: <SiPostman className="text-orange-500" />,
-        description: "Streamlined API development and testing.",
+        icon: <FaGithub />,
+        description: "Version control, review, and CI/CD.",
+        id: "0x11",
       },
       {
         name: "Jira",
-        icon: <SiJira className="text-blue-500" />,
-        description: "Agile planning and project tracking.",
+        icon: <SiJira />,
+        description: "Sprint planning and issue tracking.",
+        id: "0x12",
       },
     ],
   },
 ];
 
 export default function SkillsShowcase() {
-  const [active, setActive] = useState("Web Development");
-  const [hovered, setHovered] = useState<string | null>(null);
+  const [active, setActive] = useState(categories[0].title);
+  const [open, setOpen] = useState<string | null>(null);
 
   const activeCategory = categories.find((c) => c.title === active)!;
 
   return (
-    <section className="mx-auto max-w-6xl min-h-screen px-6 py-16 flex flex-col gap-12">
-      <div className="flex gap-x-4 mt-10">
-        {/* Sidebar */}
-        <div className="flex flex-col gap-4 w-48 border-r border-gray-700 pr-6">
-          {categories.map((c) => (
-            <button
-              key={c.title}
-              className={`text-left px-3 py-2 rounded-md transition-colors duration-300 
-              ${active === c.title ? "bg-cyan-600/20 text-cyan-400 border-l-4 border-cyan-400" : "text-gray-400 hover:text-cyan-300"}`}
-              onClick={() => setActive(c.title)}
-            >
-              {c.title}
-            </button>
-          ))}
+    <section className="min-h-screen font-mono text-console-text">
+      <div className="max-w-5xl mx-auto">
+        {/* Prompt header */}
+        <div className="mb-8 text-[13px] text-console-muted">
+          <span>$ ls ~/skills</span>
         </div>
 
-        {/* Skills Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 gap-6 flex-1 relative h-fit ">
-          {activeCategory.skills.map((skill, i) => (
-            <div
-              key={i}
-              className="group relative flex flex-col items-center justify-center p-4 rounded-xl 
-    bg-gray-800/40 border border-gray-700 hover:border-cyan-400/50 
-    hover:bg-gray-800/70 cursor-pointer transition-all duration-300 
-    hover:shadow-[0_0_20px_rgba(34,211,238,0.4)]"
-              onClick={() =>
-                setHovered(hovered === skill.name ? null : skill.name)
-              }
-              onMouseEnter={() => setHovered(skill.name)}
-              onMouseLeave={() => setHovered(null)}
-            >
-              {/* Icon */}
-              <div className="text-5xl sm:text-6xl transition-transform duration-300 group-hover:scale-125 group-hover:drop-shadow-[0_0_15px_cyan]">
-                {skill.icon}
-              </div>
+        <div className="flex flex-col md:flex-row gap-8 items-start">
+          {/* Directory tree */}
+          <div className="w-full md:w-56 shrink-0 md:border-r border-console-border md:pr-5">
+            {categories.map((c, i) => {
+              const isActive = active === c.title;
+              return (
+                <button
+                  key={c.title}
+                  onClick={() => {
+                    setActive(c.title);
+                    setOpen(null);
+                  }}
+                  className={`flex items-center gap-2 w-full text-left px-2 py-1.5 mb-0.5 rounded text-[13px] border-l-2 transition-colors duration-150 ${
+                    isActive
+                      ? "text-console-amber bg-console-panel border-console-amber"
+                      : "text-console-muted hover:text-console-text border-transparent"
+                  }`}
+                >
+                  <span className="opacity-60">
+                    {i === categories.length - 1 ? "└─" : "├─"}
+                  </span>
+                  {c.title}
+                </button>
+              );
+            })}
+          </div>
 
-              {/* Name */}
-              <span className="mt-3 text-sm font-medium text-gray-300 group-hover:text-cyan-300">
-                {skill.name}
-              </span>
-
-              {/* Description */}
-              {hovered === skill.name && (
-                <div className="mt-3 w-full rounded-lg bg-gray-900/90 text-gray-200 text-xs sm:text-sm p-3 shadow-md border border-cyan-400/30 transition-all duration-300">
-                  {skill.description}
-                </div>
-              )}
+          {/* Registry list */}
+          <div className="flex-1 w-full">
+            <div className="grid grid-cols-[56px_40px_1fr] text-[11px] uppercase tracking-wide text-console-faint px-3 pb-2 border-b border-console-border mb-1">
+              <span>id</span>
+              <span />
+              <span>name</span>
             </div>
-          ))}
+
+            {activeCategory.skills.map((skill) => {
+              const isOpen = open === skill.id;
+              return (
+                <div key={skill.id}>
+                  <div
+                    onClick={() => setOpen(isOpen ? null : skill.id)}
+                    className={`grid grid-cols-[56px_40px_1fr] items-center px-3 py-2.5 rounded cursor-pointer transition-colors duration-150 ${
+                      isOpen ? "bg-console-panel" : "hover:bg-console-panel-2"
+                    }`}
+                  >
+                    <span className="text-xs text-console-faint">
+                      {skill.id}
+                    </span>
+                    <span
+                      className={`text-lg ${isOpen ? "text-console-amber" : "text-console-muted"}`}
+                    >
+                      {skill.icon}
+                    </span>
+                    <span
+                      className={`text-sm ${isOpen ? "text-console-amber" : "text-console-text"}`}
+                    >
+                      {skill.name}
+                    </span>
+                  </div>
+
+                  {isOpen && (
+                    <div className="mx-3 mb-2 ml-[108px] px-3.5 py-2.5 bg-console-panel-2 border border-console-border border-l-2 border-l-console-amber rounded text-[12.5px] text-console-muted leading-relaxed">
+                      <span className="text-console-faint">{"> cat "}</span>
+                      <span className="text-console-amber">
+                        {skill.name.toLowerCase().replace(/\s|\./g, "-")}.md
+                      </span>
+                      <br />
+                      {skill.description}
+                      <span className="console-cursor" />
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>

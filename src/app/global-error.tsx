@@ -6,39 +6,49 @@ const styles = {
   body: {
     margin: 0,
     padding: 0,
-    backgroundColor: "#f8f8f8",
+    backgroundColor: "#0b0d12",
     height: "100vh",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    fontFamily: "Arial, sans-serif",
+    fontFamily: "'JetBrains Mono', 'Courier New', monospace",
   },
   card: {
-    backgroundColor: "white",
+    backgroundColor: "#12151c",
+    border: "1px solid #1f2430",
     padding: "2rem",
-    borderRadius: "12px",
-    boxShadow: "0 10px 30px rgba(0,0,0,0.1)",
+    borderRadius: "10px",
     textAlign: "center" as const,
     maxWidth: "400px",
   },
-  heading: {
-    fontSize: "1.8rem",
+  prompt: {
+    fontSize: "0.75rem",
+    color: "#5a6072",
     marginBottom: "0.75rem",
-    color: "#d32f2f",
+    textAlign: "left" as const,
+  },
+  heading: {
+    fontSize: "1.4rem",
+    marginBottom: "0.75rem",
+    color: "#e8a94e",
+    fontWeight: 500,
   },
   message: {
-    fontSize: "1rem",
+    fontSize: "0.9rem",
     marginBottom: "1.5rem",
-    color: "#333",
+    color: "#5a6072",
+    lineHeight: 1.6,
   },
   button: {
-    padding: "0.6rem 1.2rem",
-    backgroundColor: "#1976d2",
-    color: "white",
+    padding: "0.65rem 1.4rem",
+    backgroundColor: "#e8a94e",
+    color: "#0b0d12",
     border: "none",
     borderRadius: "6px",
     cursor: "pointer",
-    fontSize: "1rem",
+    fontSize: "0.85rem",
+    fontFamily: "inherit",
+    fontWeight: 500,
   },
 };
 
@@ -57,13 +67,14 @@ export default function GlobalError({
     <html>
       <body style={styles.body}>
         <div style={styles.card}>
-          <h1 style={styles.heading}>Something went wrong</h1>
+          <div style={styles.prompt}>$ process --status</div>
+          <h1 style={styles.heading}>process crashed</h1>
           <p style={styles.message}>
-            We encountered an unexpected error. Please try again or contact
-            support.
+            An unexpected error occurred. You can retry the last operation or
+            reach out if it keeps happening.
           </p>
           <button style={styles.button} onClick={() => reset()}>
-            Try Again
+            ↻ retry
           </button>
         </div>
       </body>
