@@ -8,7 +8,7 @@ import SocialSidebar from "@/components/ui-contents/social-sidebar";
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#0b0b12] via-[#0f0f1a] to-[#0b0b12] text-white relative overflow-hidden">
+    <div className="min-h-screen console-grid  bg-console-bg text-console-text relative overflow-hidden">
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}

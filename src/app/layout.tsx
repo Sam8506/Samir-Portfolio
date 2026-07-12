@@ -1,15 +1,21 @@
 import type { Metadata } from "next";
+import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { GoogleTagManager } from "@next/third-parties/google";
 import Script from "next/script";
 import Navbar from "@/components/ui-contents/nav-bar";
 import ChatWidget from "@/components/ui-contents/chat-widget";
 
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-jetbrains-mono",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Samir Patel | Full Stack Software Engineer",
   description:
-    "I'm Samir Patel, a Full Stack Software Engineer from India with 2+ years of experience building scalable web and mobile applications. Skilled in NestJS, NextJS, iOS, and cloud technologies.",
+    "I'm Samir Patel, a Full Stack Software Engineer from India with 3+ years of experience building scalable web and mobile applications. Skilled in NestJS, NextJS, iOS, and cloud technologies.",
   keywords: [
     "Samir Patel",
     "Software Enginner",
@@ -29,7 +35,7 @@ export const metadata: Metadata = {
     siteName: "Samir Patel Portfolio",
     images: [
       {
-        url: "https://samirpatel.in/preview-portfolio.png", 
+        url: "https://samirpatel.in/preview-portfolio.png",
         width: 1200,
         height: 630,
         alt: "Samir Patel Portfolio Preview",
@@ -42,7 +48,7 @@ export const metadata: Metadata = {
     title:
       "Samir Patel | Full Stack Software Engineer | Application & Web Development | AI/ML Enthusiast",
     description:
-      "Portfolio of Samir Patel – Full Stack Software Engineer with 2+ years experience in scalable web, mobile, and backend applications.",
+      "Portfolio of Samir Patel – Full Stack Software Engineer with 3+ years experience in scalable web, mobile, and backend applications.",
     images: ["https://samirpatel.in/preview-portfolio.png"],
   },
 
@@ -51,19 +57,19 @@ export const metadata: Metadata = {
   publisher: "Samir Patel",
 };
 
-
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   const gtmId = "GTM-NNC9GLFD";
-  const isAIChatEnable =(process.env.NEXT_PUBLIC_CHAT_ENABLE) === "0" ? false : true ; 
+  const isAIChatEnable =
+    process.env.NEXT_PUBLIC_CHAT_ENABLE === "0" ? false : true;
 
   return (
-    <html lang="en">
+    <html lang="en" className={jetbrainsMono.variable}>
       <GoogleTagManager gtmId={gtmId} />
-      <body>
+      <body className="font-mono bg-console-bg text-console-text ">
         <noscript>
           <iframe
             src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`}
@@ -73,11 +79,13 @@ export default function RootLayout({
           />
         </noscript>
 
-          <Navbar />
-          <div className="mt-10  !bg-gradient-to-b from-[#0b0b12] via-[#0f0f1a] to-[#0b0b12]">{children}</div>
-          {isAIChatEnable && <ChatWidget/>}
+        <Navbar />
+        <div className="bg-console-bg min-h-screen console-grid pt-20">
+          {children}
+        </div>
+        {isAIChatEnable && <ChatWidget />}
 
-          <Script
+        <Script
           id="structured-data-person"
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -89,7 +97,7 @@ export default function RootLayout({
               image: "https://samirpatel.in/preview-portfolio.png",
               jobTitle: "Full Stack Software Engineer",
               description:
-                "Full Stack Software Engineer from Surat, India with 2+ years of experience in scalable web, mobile, and backend development. Skilled in Next.js, NestJS, iOS, AWS, Kubernetes, and Kotlin.",
+                "Full Stack Software Engineer from Surat, India with 3+ years of experience in scalable web, mobile, and backend development. Skilled in Next.js, NestJS, iOS, AWS, Kubernetes, and Kotlin.",
               nationality: "Indian",
               sameAs: [
                 "https://github.com/Patel-Samir",

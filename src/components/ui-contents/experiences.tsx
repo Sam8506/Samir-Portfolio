@@ -13,53 +13,55 @@ type Experience = {
   description: string[];
   tech: string[];
   nodeName: string;
-  color: string;
-  projects?: {name:string, url:string}[]
-
+  projects?: { name: string; url: string }[];
 };
 
 const experiences: Experience[] = [
-   {
+  {
     id: "exp1",
-    nodeName: "Software Engineer",
-    role: "Software Engineer",
+    nodeName: "Software Engineer (L2)",
+    role: "Software Engineer (L2)",
     companyUrl: "https://www.talentsystems.com/",
-    company: "Talent Systems, LLC",
+    company: "Talent Systems, LLC (Casting Networks)",
     period: "Nov 2025 – Present",
     description: [
-      "Migrated media management from Cloudinary to AWS, optimizing performance and scalability.",
-      "Larger media files now render 30% faster on first load, and storage plus media transformation costs have been reduced by 50% compared to before",
-      "Transitioned frontend architecture to a MonoRepo for better maintainability.",
-      "Reduced Docker image sizes by 67%, improving build efficiency and speeding up deployments.",
-      "Participated in database design, requirement gathering, and workflow planning.",
-      "Designed and implemented PayPal and Apple Pay flows with VISA compliance, DPAN, and MPAN handling.",
-      "Implemented fraud detection measures to strengthen transaction security.",
-      "Developed media processing pipelines with AWS Elemental for efficient video processing.",
+      "Part of a major cost-reduction initiative by building an internal media service that replaced Cloudinary and AWS Elemental across all company products — covering S3 media uploads, FFmpeg video transcoding, Sharp-based image transformation (multi-resolution and format variants), signed URL generation, and CloudFront CDN invalidation.",
+      "Designed an event-based architecture publishing webhook events to drive asynchronous, decoupled processing workflows.",
+      "Lead frontend development and architecture for R&D and production delivery initiatives across Casting Networks and StaffMeUp products.",
+      "Architected a reusable UI abstraction layer — a wrapper over MUI and RizzUI component libraries with custom components to handle complex, evolving UI/UX requirements.",
+      "Drive the full frontend release lifecycle: build optimization, deployment pipeline management, and early issue detection.",
+      "Partner with the Tech Lead on cost and timeline estimations and new feature integration assessments.",
+      "Drive experimentation with emerging technologies, particularly AI-powered systems, and guide team adoption of new approaches.",
+      "Built a Next.js POC for an internal feature-flag management system on AWS AppConfig, evaluated as a replacement for LaunchDarkly to cut per-seat licensing costs.",
     ],
-    tech: ["NestJS", "NextJS", "PostgreSQL", "AWS", "Swift", "Ktor"],
-    color: "blue",
-    projects: [{name: "Casting Networks", url: "https://www.castingnetworks.com/"}, {name:"StaffMeUp",url:"https://staffmeup.com/"},]
+    tech: ["NestJS", "NextJS", "PostgreSQL", "AWS", "MUI"],
+    projects: [
+      { name: "Casting Networks", url: "https://www.castingnetworks.com/" },
+      { name: "StaffMeUp", url: "https://staffmeup.com/" },
+      { name: "FastCast", url: "https://fastcast.com/" },
+    ],
   },
   {
     id: "exp2",
     nodeName: "Jr. Software Engineer",
-    role: "Jr. Software Engineer",
+    role: "Jr. Software Engineer – Full Stack",
     companyUrl: "https://www.talentsystems.com/",
-    company: "Talent Systems, LLC",
+    company: "Talent Systems, LLC (Casting Networks)",
     period: "Jan 2024 – Oct 2025",
     description: [
-      "Migrated media management from Cloudinary to AWS, optimizing performance and scalability.",
-      "Larger media files now render 30% faster on first load, and storage plus media transformation costs have been reduced by 50% compared to before",
-      "Transitioned frontend architecture to a MonoRepo for better maintainability.",
-      "Reduced Docker image sizes by 67%, improving build efficiency and speeding up deployments.",
-      "Participated in database design, requirement gathering, and workflow planning.",
-      "Designed and implemented PayPal and Apple Pay flows with VISA compliance, DPAN, and MPAN handling.",
-      "Implemented fraud detection measures to strengthen transaction security.",
-      "Developed media processing pipelines with AWS Elemental for efficient video processing.",
+      "Migrated media management architecture from Cloudinary to AWS, resulting in 30% faster first-load rendering for large media files and a 42% reduction in storage and transformation costs.",
+      "Integrated RecurlyJS for recurring and one-time payment subscriptions, supporting Apple Pay, PayPal, and card payments in GBP and USD.",
+      "Implemented a DDoS mitigation solution to enhance platform security.",
+      "Contributed to the daily release process using feature flags for rapid, controlled feature delivery.",
+      "Transitioned frontend architecture to a MonoRepo structure using Nx for improved maintainability.",
+      "Wrote and executed XCTest cases for the iOS mobile app, increasing test coverage from 20% to 76%.",
+      "Participated in database design and requirement gathering; designed application workflows to streamline development and UX.",
     ],
-    tech: ["NestJS", "NextJS", "PostgreSQL", "AWS", "Swift", "Ktor"],
-    color: "blue",
-    projects: [{name: "Casting Networks", url: "https://www.castingnetworks.com/"}, {name:"StaffMeUp",url:"https://staffmeup.com/"},]
+    tech: ["NestJS", "NextJS", "PostgreSQL", "AWS", "Swift", "Nx", "RecurlyJS"],
+    projects: [
+      { name: "Casting Networks", url: "https://www.castingnetworks.com/" },
+      { name: "StaffMeUp", url: "https://staffmeup.com/" },
+    ],
   },
   {
     id: "exp3",
@@ -73,8 +75,7 @@ const experiences: Experience[] = [
       "Worked across frontend, backend, mobile and cloud deployment technologies.",
     ],
     tech: ["NestJS", "Next.js", "AWS"],
-    color: "purple",
-    projects: [ {name:"Spotlight One",url:"https://spotlightone.com/"}]
+    projects: [{ name: "Spotlight One", url: "https://spotlightone.com/" }],
   },
   {
     id: "exp4",
@@ -90,13 +91,12 @@ const experiences: Experience[] = [
       "Documented project progress and facilitated effective communication within the team.",
     ],
     tech: ["Flutter", "Project Management", "Team Leadership", "Agile"],
-    color: "green",
   },
   {
     id: "exp5",
     nodeName: "Full stack Developer",
     role: "Full-Stack Developer",
-    companyUrl:"https://www.linkedin.com/company/cldccharusat",
+    companyUrl: "https://www.linkedin.com/company/cldccharusat",
     company: "Charusat Learning and Development Club",
     period: "Apr 2023 – Sep 2023",
     description: [
@@ -105,13 +105,12 @@ const experiences: Experience[] = [
       "Participated in code reviews and maintained development best practices.",
     ],
     tech: ["React", "Node.js", "MongoDB", "Express.js"],
-    color: "orange",
   },
   {
     id: "exp6",
     nodeName: "Mobile Dev Intern",
     role: "Mobile Development Intern",
-    companyUrl:"https://kintudesigns.com/index.html",
+    companyUrl: "https://kintudesigns.com/index.html",
     company: "Kintu Designs Pvt. Ltd.",
     period: "May 2022 – Jun 2022",
     description: [
@@ -120,7 +119,6 @@ const experiences: Experience[] = [
       "Developed technical skills and collaborated effectively in team environment.",
     ],
     tech: ["Flutter", "UI/UX", "Mobile Development"],
-    color: "indigo",
   },
 ];
 
@@ -131,120 +129,76 @@ interface ExperienceNodesProps {
 export default function ExperienceNodes({ isHomePage }: ExperienceNodesProps) {
   const [active, setActive] = useState<Experience | null>(experiences?.[0]);
 
-  const getColorClasses = (
-    color: string,
-    variant: "bg" | "border" | "text" = "bg",
-  ) => {
-    const colors = {
-      blue: {
-        bg: "bg-blue-500/10 border-blue-500/30",
-        border: "border-blue-500/30",
-        text: "text-blue-400",
-      },
-      purple: {
-        bg: "bg-purple-500/10 border-purple-500/30",
-        border: "border-purple-500/30",
-        text: "text-purple-400",
-      },
-      green: {
-        bg: "bg-green-500/10 border-green-500/30",
-        border: "border-green-500/30",
-        text: "text-green-400",
-      },
-      orange: {
-        bg: "bg-orange-500/10 border-orange-500/30",
-        border: "border-orange-500/30",
-        text: "text-orange-400",
-      },
-      indigo: {
-        bg: "bg-indigo-500/10 border-indigo-500/30",
-        border: "border-indigo-500/30",
-        text: "text-indigo-400",
-      },
-    };
-    return (
-      colors[color as keyof typeof colors]?.[variant] || colors.blue[variant]
-    );
-  };
-
   return (
     <section
-      className={`relative mx-auto px-4 ${isHomePage ? "max-w-6xl" : "max-w-7xl pt-16 min-h-screen "} `}
+      className={`relative mx-auto px-4 font-mono ${isHomePage ? "max-w-6xl" : "max-w-6xl min-h-screen"}`}
     >
       {isHomePage && (
-        <motion.h2
-          className="text-4xl tracking-wide font-bold text-white mb-12"
-          initial={{ opacity: 0, y: -20 }}
+        <motion.div
+          className="mb-10 flex items-baseline gap-2 text-sm"
+          initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.5 }}
         >
-          Engineering at
-        </motion.h2>
+          <span className="text-console-faint">$</span>
+          <span className="text-console-muted">cat ~/experience/recent.md</span>
+        </motion.div>
       )}
-
+      {!isHomePage && (
+        <div className="my-8 text-[13px] text-console-muted">
+          <span>$ ls ~/experiences</span>
+        </div>
+      )}
       <div className="flex flex-col lg:flex-row gap-8">
         {/* Navigation Sidebar */}
         {!isHomePage && (
           <motion.div
-            className="lg:w-80 flex-shrink-0"
-            initial={{ x: -30, opacity: 0 }}
+            className="lg:w-80 shrink-0"
+            initial={{ x: -20, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.5 }}
           >
             <div className="sticky top-24">
-              <div className="relative space-y-6">
-                {/* Timeline line */}
-                <div className="absolute left-5 top-0 bottom-0 w-px bg-gradient-to-b from-gray-600 to-gray-800" />
+              <div className="relative space-y-1.5">
+                <div className="absolute left-[9px] top-0 bottom-0 w-px bg-console-border" />
 
-                {experiences.map((exp, index) => (
-                  <motion.button
-                    key={exp.id + index}
-                    role="button"
-                    className={`relative cursor-pointer w-full text-left p-4 rounded-xl transition-all duration-300 group
-                      ${
-                        active?.id === exp.id
-                          ? `${getColorClasses(exp.color, "bg")} border ${getColorClasses(exp.color, "border")}`
-                          : "bg-gray-900/40 border border-gray-700/50 hover:border-gray-600 hover:bg-gray-900/60"
+                {experiences.map((exp, index) => {
+                  const isActive = active?.id === exp.id;
+                  return (
+                    <motion.button
+                      key={exp.id + index}
+                      className={`relative cursor-pointer w-full text-left p-3 pl-8 rounded-md transition-colors duration-200 group ${
+                        isActive
+                          ? "bg-console-panel border border-console-amber/30"
+                          : "border border-transparent hover:bg-console-panel-2"
                       }`}
-                    onClick={() => setActive(exp)}
-                    whileHover={{ x: 4 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    {/* Timeline dot */}
-                    <div
-                      className={`absolute -left-2 top-1/2 -translate-y-1/2 w-4 h-4 rounded-full border-2 transition-colors duration-300
-                      ${
-                        active?.id === exp.id
-                          ? `${getColorClasses(exp.color, "text")} bg-current border-current`
-                          : "bg-gray-800 border-gray-600 group-hover:border-gray-500"
-                      }`}
-                    />
+                      onClick={() => setActive(exp)}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <div
+                        className={`absolute left-[5px] top-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full border-2 transition-colors duration-200 ${
+                          isActive
+                            ? "bg-console-amber border-console-amber"
+                            : "bg-console-bg border-console-border group-hover:border-console-muted"
+                        }`}
+                      />
 
-                    <div className="ml-4 flex items-center gap-3">
-                      <div className="flex-1 min-w-0 space-y-0.5">
-                        <div className="font-semibold text-white text-sm">
+                      <div className="space-y-0.5">
+                        <div
+                          className={`font-medium text-sm ${isActive ? "text-console-amber" : "text-console-text"}`}
+                        >
                           {exp.nodeName}
                         </div>
-                        <div className="text-xs text-gray-400 truncate">
+                        <div className="text-xs text-console-muted truncate">
                           {exp.company}
                         </div>
-                        <div className="text-xs text-gray-500">
+                        <div className="text-xs text-console-faint">
                           {exp.period}
                         </div>
                       </div>
-                    </div>
-
-                    {/* Active indicator */}
-                    {active?.id === exp.id && (
-                      <motion.div
-                        className={`absolute right-2 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full ${getColorClasses(exp.color, "text")} bg-current`}
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        transition={{ type: "spring", stiffness: 500 }}
-                      />
-                    )}
-                  </motion.button>
-                ))}
+                    </motion.button>
+                  );
+                })}
               </div>
             </div>
           </motion.div>
@@ -256,96 +210,88 @@ export default function ExperienceNodes({ isHomePage }: ExperienceNodesProps) {
             {active && (
               <motion.div
                 key={active.id}
-                initial={{ opacity: 0, y: 30, scale: 0.95 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: -20, scale: 0.95 }}
-                transition={{ duration: 0.5, ease: "easeOut" }}
-                className="relative rounded-3xl px-4 py-4 md:px-14 md:py-10 bg-gradient-to-br from-gray-900/70 via-black/70 to-gray-950/70 backdrop-blur-xl border border-white/10 shadow-xl "
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.35, ease: "easeOut" }}
+                className="relative rounded-lg px-5 py-6 md:px-10 md:py-8 bg-console-panel border border-console-border"
               >
-                {/* Glow effect */}
-                <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-fuchsia-500/10 via-purple-500/5 to-transparent blur-3xl -z-10" />
-
                 {/* Header */}
-                <div className="flex flex-col md:flex-row items-start justify-between mb-10">
+                <div className="flex flex-col md:flex-row items-start justify-between mb-8 pb-6 border-b border-console-border gap-4">
                   <div className="md:w-1/2">
-                    <h2 className="text-3xl font-bold text-white tracking-tight">
+                    <h2 className="text-2xl font-medium text-console-text-strong tracking-tight">
                       {active.role}
                     </h2>
                     <Link
-                    href={active.companyUrl}
-                    target="_blank"
-                      className={`text-lg font-medium ${getColorClasses(
-                        active.color,
-                        "text",
-                      )} mt-1`}
+                      href={active.companyUrl}
+                      target="_blank"
+                      className="text-sm text-console-amber mt-1 inline-block hover:underline"
                     >
                       {active.company}
                     </Link>
-                    <p className="text-sm text-gray-400 mt-2">
+                    <p className="text-xs text-console-muted mt-2">
                       {active.period}
                     </p>
                   </div>
 
                   {/* Technologies */}
-                  <div className="mt-10 md:mt-0 md:text-right">
-                    <h3 className="font-semibold text-gray-300 text-sm tracking-wide mb-3">
+                  <div className="md:text-right">
+                    <h3 className="font-medium text-console-muted text-xs uppercase tracking-wide mb-2.5">
                       Tech Stack
                     </h3>
-                    <div className="flex flex-wrap md:justify-end gap-2">
+                    <div className="flex flex-wrap md:justify-end gap-1.5">
                       {active.tech.map((tech, idx) => (
-                        <motion.span
+                        <span
                           key={idx}
-                          className="px-3 py-1 text-xs rounded-full bg-gradient-to-r from-gray-800/80 to-gray-900/80 border border-gray-700 text-gray-300 hover:from-fuchsia-600/20 hover:to-purple-600/20 hover:border-fuchsia-500/40 transition"
-                          initial={{ opacity: 0, scale: 0.9 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          transition={{ delay: idx * 0.05 }}
+                          className="px-2.5 py-1 text-xs rounded bg-console-bg border border-console-border text-console-text"
                         >
                           {tech}
-                        </motion.span>
+                        </span>
                       ))}
                     </div>
                   </div>
                 </div>
+
                 {/* Projects */}
                 {active.projects && active.projects.length > 0 && (
-                  <div className="my-6 flex flex-col md:flex-row gap-2 ">
-                     <h3 className="font-semibold text-white text-lg  flex items-center gap-2">
-                        Product Experience 
-                      </h3>
-                    <div className="flex  items-center  gap-2">
+                  <div className="mb-6 flex flex-col md:flex-row md:items-center gap-2">
+                    <h3 className="font-medium text-console-text text-sm shrink-0">
+                      Product Experience
+                    </h3>
+                    <div className="flex items-center flex-wrap gap-2">
                       {active.projects.map((p, idx) => (
-                        <motion.a
+                        <a
                           key={idx}
                           href={p.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="px-3 py-1 text-xs rounded-full underline bg-gradient-to-r from-gray-800/80 to-gray-900/80 border border-gray-700 text-gray-300 hover:from-fuchsia-600/20 hover:to-purple-600/20 hover:border-fuchsia-500/40 transition"                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
+                          className="px-2.5 py-1 text-xs rounded bg-console-bg border border-console-border text-console-amber hover:border-console-amber/50 transition-colors duration-150"
                         >
-                          {p.name}
-                        </motion.a>
+                          {p.name} ↗
+                        </a>
                       ))}
                     </div>
                   </div>
                 )}
 
-
                 {/* Key Achievements */}
                 <div>
-                  <h3 className="font-semibold text-white text-lg my-5 flex items-center gap-2">
+                  <h3 className="font-medium text-console-text text-sm mb-3">
                     Key Contributions
                   </h3>
-                  <div className="space-y-4">
+                  <div className="space-y-2.5">
                     {active.description.map((desc, idx) => (
                       <motion.div
                         key={idx}
-                        className="relative group p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-fuchsia-500/40 hover:shadow-[0_0_15px_rgba(217,70,239,0.2)] transition"
-                        initial={{ opacity: 0, x: -15 }}
+                        className="relative pl-4 py-1"
+                        initial={{ opacity: 0, x: -10 }}
                         animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: idx * 0.1 }}
+                        transition={{ delay: idx * 0.05 }}
                       >
-                        <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 rounded-r-full bg-gradient-to-b from-fuchsia-500 to-purple-600" />
-                        <p className="pl-4 text-gray-300 text-sm leading-relaxed">
+                        <span className="absolute left-0 top-2 text-console-amber text-xs">
+                          {">"}
+                        </span>
+                        <p className="text-console-muted text-sm leading-relaxed">
                           {desc}
                         </p>
                       </motion.div>

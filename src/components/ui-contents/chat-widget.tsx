@@ -5,7 +5,14 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { MessageCircleQuestionMarkIcon, X, Send, User, Bot, Minimize2, } from "lucide-react";
+import {
+  MessageCircleQuestionMarkIcon,
+  X,
+  Send,
+  User,
+  Bot,
+  Minimize2,
+} from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
@@ -50,7 +57,7 @@ export default function ChatWidget() {
     const userMsg: Msg = {
       role: "user",
       text: input.trim(),
-      timestamp: new Date()
+      timestamp: new Date(),
     };
 
     const next = [...messages, userMsg];
@@ -59,7 +66,9 @@ export default function ChatWidget() {
     setLoading(true);
     setIsTyping(true);
 
-    await new Promise(resolve => { setTimeout(resolve, 500) });
+    await new Promise((resolve) => {
+      setTimeout(resolve, 500);
+    });
 
     try {
       const res = await fetch("/api/chat", {
@@ -69,9 +78,9 @@ export default function ChatWidget() {
       });
 
       if (!res.ok) {
-        console.error({res});
+        console.error({ res });
         return;
-      };
+      }
 
       const data = await res.json();
 
@@ -80,8 +89,8 @@ export default function ChatWidget() {
         {
           role: "assistant",
           text: data.reply,
-          timestamp: new Date()
-        }
+          timestamp: new Date(),
+        },
       ]);
     } catch (e) {
       console.error(e);
@@ -90,7 +99,7 @@ export default function ChatWidget() {
         {
           role: "assistant",
           text: "Oops! Something went wrong on my end. Mind trying that again? 🤔",
-          timestamp: new Date()
+          timestamp: new Date(),
         },
       ]);
     } finally {
@@ -127,37 +136,41 @@ export default function ChatWidget() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className={`md:mb-4 w-screen ${minimized ? 'md:w-80' : 'md:w-96'} transition-all duration-300`}
+            className={`md:mb-4 w-screen ${minimized ? "md:w-80" : "md:w-96"} transition-all duration-300`}
           >
-            <div className="rounded-2xl shadow-2xl backdrop-blur-2xl bg-gradient-to-br from-slate-900/95 via-slate-800/95 to-slate-900/95 border border-white/10 flex flex-col overflow-hidden">
+            <div className="rounded-2xl shadow-2xl backdrop-blur-2xl bg-console-panel/95 border border-console-border flex flex-col overflow-hidden">
               {/* Header */}
-              <div className="px-5 py-4 border-b border-white/10 flex items-center justify-between bg-gradient-to-r from-purple-600/20 to-blue-600/20">
+              <div className="px-5 py-4 border-b border-console-border flex items-center justify-between bg-console-panel-2">
                 <div className="flex items-center gap-3">
                   <div className="relative">
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-blue-500 flex items-center justify-center">
-                      <Bot className="w-5 h-5 text-white" />
+                    <div className="w-10 h-10 rounded-full bg-console-amber flex items-center justify-center">
+                      <Bot className="w-5 h-5 text-console-bg" />
                     </div>
-                    <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-green-400 rounded-full border-2 border-slate-900" />
+                    <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-green-400 rounded-full border-2 border-console-panel" />
                   </div>
                   <div>
-                    <div className="text-sm font-semibold text-white">SamzZ AI</div>
-                    <div className="text-xs text-gray-400">Always here to help</div>
+                    <div className="text-sm font-semibold text-console-text-strong">
+                      SamzZ AI
+                    </div>
+                    <div className="text-xs text-console-muted">
+                      Always here to help
+                    </div>
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
                   <button
                     onClick={() => setMinimized(!minimized)}
-                    className="p-2 hover:bg-white/10 rounded-lg transition-colors"
+                    className="p-2 hover:bg-console-border rounded-md transition-colors"
                     aria-label="Minimize"
                   >
-                    <Minimize2 className="w-4 h-4 text-gray-300" />
+                    <Minimize2 className="w-4 h-4 text-console-muted" />
                   </button>
                   <button
                     onClick={() => setOpen(false)}
-                    className="p-2 hover:bg-white/10 rounded-lg transition-colors"
+                    className="p-2 hover:bg-console-border rounded-md transition-colors"
                     aria-label="Close"
                   >
-                    <X className="w-4 h-4 text-gray-300" />
+                    <X className="w-4 h-4 text-console-muted" />
                   </button>
                 </div>
               </div>
@@ -174,22 +187,28 @@ export default function ChatWidget() {
                         transition={{ duration: 0.3 }}
                         className={`flex gap-3 ${m.role === "user" ? "flex-row-reverse" : ""}`}
                       >
-                        <div className={`w-8 h-8 rounded-full flex-shrink-0 flex items-center justify-center ${m.role === "user"
-                          ? "bg-gradient-to-br from-blue-500 to-purple-500"
-                          : "bg-gradient-to-br from-purple-500 to-pink-500"
-                          }`}>
+                        <div
+                          className={`w-8 h-8 rounded-full shrink-0 flex items-center justify-center ${
+                            m.role === "user"
+                              ? "bg-console-border"
+                              : "bg-console-amber"
+                          }`}
+                        >
                           {m.role === "user" ? (
-                            <User className="w-4 h-4 text-white" />
+                            <User className="w-4 h-4 text-console-text" />
                           ) : (
-                            <Bot className="w-4 h-4 text-white" />
+                            <Bot className="w-4 h-4 text-console-bg" />
                           )}
                         </div>
-                        <div className={`flex-1 ${m.role === "user" ? "flex justify-end" : ""}`}>
+                        <div
+                          className={`flex-1 ${m.role === "user" ? "flex justify-end" : ""}`}
+                        >
                           <div
-                            className={`inline-block px-4 py-3 rounded-2xl text-sm leading-relaxed max-w-[85%] ${m.role === "user"
-                              ? "bg-gradient-to-br from-blue-600 to-purple-600 text-white rounded-tr-sm"
-                              : "bg-white/10 text-gray-100 rounded-tl-sm backdrop-blur-sm"
-                              }`}
+                            className={`inline-block px-4 py-3 rounded-2xl text-sm leading-relaxed max-w-[85%] ${
+                              m.role === "user"
+                                ? "bg-console-amber text-console-bg rounded-tr-sm"
+                                : "bg-console-panel-2 text-console-text rounded-tl-sm border border-console-border"
+                            }`}
                           >
                             {m.role === "assistant" ? (
                               <div className="markdown-content">
@@ -197,28 +216,70 @@ export default function ChatWidget() {
                                   remarkPlugins={[remarkGfm]}
                                   components={{
                                     // Headings
-                                    h1: ({ node, ...props }) => <h1 className="text-xl font-bold mb-2 mt-4" {...props} />,
-                                    h2: ({ node, ...props }) => <h2 className="text-lg font-bold mb-2 mt-3" {...props} />,
-                                    h3: ({ node, ...props }) => <h3 className="text-base font-semibold mb-2 mt-2" {...props} />,
+                                    h1: ({ node, ...props }) => (
+                                      <h1
+                                        className="text-xl font-bold mb-2 mt-4"
+                                        {...props}
+                                      />
+                                    ),
+                                    h2: ({ node, ...props }) => (
+                                      <h2
+                                        className="text-lg font-bold mb-2 mt-3"
+                                        {...props}
+                                      />
+                                    ),
+                                    h3: ({ node, ...props }) => (
+                                      <h3
+                                        className="text-base font-semibold mb-2 mt-2"
+                                        {...props}
+                                      />
+                                    ),
 
                                     // Paragraphs
-                                    p: ({ node, ...props }) => <p className="mb-2 last:mb-0" {...props} />,
+                                    p: ({ node, ...props }) => (
+                                      <p
+                                        className="mb-2 last:mb-0"
+                                        {...props}
+                                      />
+                                    ),
 
                                     // Lists
-                                    ul: ({ node, ...props }) => <ul className="list-disc list-inside mb-2 space-y-1" {...props} />,
-                                    ol: ({ node, ...props }) => <ol className="list-decimal list-inside mb-2 space-y-1" {...props} />,
-                                    li: ({ node, ...props }) => <li className="ml-2" {...props} />,
+                                    ul: ({ node, ...props }) => (
+                                      <ul
+                                        className="list-disc list-inside mb-2 space-y-1"
+                                        {...props}
+                                      />
+                                    ),
+                                    ol: ({ node, ...props }) => (
+                                      <ol
+                                        className="list-decimal list-inside mb-2 space-y-1"
+                                        {...props}
+                                      />
+                                    ),
+                                    li: ({ node, ...props }) => (
+                                      <li className="ml-2" {...props} />
+                                    ),
 
                                     // Strong/Bold
-                                    strong: ({ node, ...props }) => <strong className="font-bold text-purple-300" {...props} />,
+                                    strong: ({ node, ...props }) => (
+                                      <strong
+                                        className="font-bold text-console-amber"
+                                        {...props}
+                                      />
+                                    ),
 
                                     // Emphasis/Italic
-                                    em: ({ node, ...props }) => <em className="italic text-blue-300" {...props} />,
+                                    em: ({ node, ...props }) => (
+                                      <em
+                                        className="italic text-console-amber/80"
+                                        {...props}
+                                      />
+                                    ),
 
                                     // Links
                                     a: ({ node, ...props }) => (
                                       <a
-                                        className="text-blue-400 hover:text-blue-300 underline"
+                                        className="text-console-amber hover:text-console-amber/80 underline"
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         {...props}
@@ -226,8 +287,16 @@ export default function ChatWidget() {
                                     ),
 
                                     // Inline code
-                                    code: ({ node, inline, className, children, ...props }: any) => {
-                                      const match = /language-(\w+)/.exec(className || '');
+                                    code: ({
+                                      node,
+                                      inline,
+                                      className,
+                                      children,
+                                      ...props
+                                    }: any) => {
+                                      const match = /language-(\w+)/.exec(
+                                        className || "",
+                                      );
                                       return !inline && match ? (
                                         <div className="my-2 rounded-lg overflow-hidden">
                                           <SyntaxHighlighter
@@ -236,16 +305,22 @@ export default function ChatWidget() {
                                             PreTag="div"
                                             customStyle={{
                                               margin: 0,
-                                              borderRadius: '0.5rem',
-                                              fontSize: '0.85rem',
+                                              borderRadius: "0.5rem",
+                                              fontSize: "0.85rem",
                                             }}
                                             {...props}
                                           >
-                                            {String(children).replace(/\n$/, '')}
+                                            {String(children).replace(
+                                              /\n$/,
+                                              "",
+                                            )}
                                           </SyntaxHighlighter>
                                         </div>
                                       ) : (
-                                        <code className="bg-white/20 px-1.5 py-0.5 rounded text-purple-300 text-xs" {...props}>
+                                        <code
+                                          className="bg-console-border px-1.5 py-0.5 rounded text-console-amber text-xs"
+                                          {...props}
+                                        >
                                           {children}
                                         </code>
                                       );
@@ -253,11 +328,19 @@ export default function ChatWidget() {
 
                                     // Blockquote
                                     blockquote: ({ node, ...props }) => (
-                                      <blockquote className="border-l-4 border-purple-400 pl-3 italic my-2 text-gray-300" {...props} />
+                                      <blockquote
+                                        className="border-l-4 border-console-amber pl-3 italic my-2 text-console-muted"
+                                        {...props}
+                                      />
                                     ),
 
                                     // Horizontal rule
-                                    hr: ({ node, ...props }) => <hr className="my-3 border-white/20" {...props} />,
+                                    hr: ({ node, ...props }) => (
+                                      <hr
+                                        className="my-3 border-console-border"
+                                        {...props}
+                                      />
+                                    ),
                                   }}
                                 >
                                   {m.text}
@@ -277,25 +360,37 @@ export default function ChatWidget() {
                         animate={{ opacity: 1, y: 0 }}
                         className="flex gap-3"
                       >
-                        <div className="w-8 h-8 rounded-full flex-shrink-0 flex items-center justify-center bg-gradient-to-br from-purple-500 to-pink-500">
-                          <Bot className="w-4 h-4 text-white" />
+                        <div className="w-8 h-8 rounded-full shrink-0 flex items-center justify-center bg-console-amber">
+                          <Bot className="w-4 h-4 text-console-bg" />
                         </div>
-                        <div className="bg-white/10 backdrop-blur-sm px-4 py-3 rounded-2xl rounded-tl-sm">
+                        <div className="bg-console-panel-2 border border-console-border px-4 py-3 rounded-2xl rounded-tl-sm">
                           <div className="flex gap-1">
                             <motion.div
-                              className="w-2 h-2 bg-gray-400 rounded-full"
+                              className="w-2 h-2 bg-console-muted rounded-full"
                               animate={{ y: [0, -6, 0] }}
-                              transition={{ duration: 0.6, repeat: Infinity, delay: 0 }}
+                              transition={{
+                                duration: 0.6,
+                                repeat: Infinity,
+                                delay: 0,
+                              }}
                             />
                             <motion.div
-                              className="w-2 h-2 bg-gray-400 rounded-full"
+                              className="w-2 h-2 bg-console-muted rounded-full"
                               animate={{ y: [0, -6, 0] }}
-                              transition={{ duration: 0.6, repeat: Infinity, delay: 0.2 }}
+                              transition={{
+                                duration: 0.6,
+                                repeat: Infinity,
+                                delay: 0.2,
+                              }}
                             />
                             <motion.div
-                              className="w-2 h-2 bg-gray-400 rounded-full"
+                              className="w-2 h-2 bg-console-muted rounded-full"
                               animate={{ y: [0, -6, 0] }}
-                              transition={{ duration: 0.6, repeat: Infinity, delay: 0.4 }}
+                              transition={{
+                                duration: 0.6,
+                                repeat: Infinity,
+                                delay: 0.4,
+                              }}
                             />
                           </div>
                         </div>
@@ -307,13 +402,15 @@ export default function ChatWidget() {
                   {/* Quick Prompts */}
                   {messages.length === 1 && (
                     <div className="px-4 pb-3">
-                      <div className="text-xs text-gray-400 mb-2">Quick questions:</div>
+                      <div className="text-xs text-console-muted mb-2">
+                        Quick questions:
+                      </div>
                       <div className="flex flex-wrap gap-2">
                         {quickPrompts.map((prompt, i) => (
                           <button
                             key={i}
                             onClick={() => handleQuickPrompt(prompt)}
-                            className="text-xs px-3 py-1.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-full transition-colors text-gray-300"
+                            className="text-xs px-3 py-1.5 bg-console-panel-2 hover:bg-console-border border border-console-border rounded-full transition-colors text-console-muted"
                           >
                             {prompt}
                           </button>
@@ -323,12 +420,12 @@ export default function ChatWidget() {
                   )}
 
                   {/* Input */}
-                  <div className="p-4 border-t border-white/10 bg-slate-900/50">
+                  <div className="p-4 border-t border-console-border bg-console-panel-2">
                     <div className="flex gap-2 items-end">
                       <div className="flex-1 relative">
                         <input
                           ref={inputRef}
-                          className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm outline-none focus:border-purple-500/50 focus:bg-white/10 transition-all text-white placeholder-gray-500"
+                          className="w-full bg-console-bg border border-console-border rounded-xl px-4 py-3 text-sm outline-none focus:border-console-amber/50 transition-all text-console-text placeholder-console-faint"
                           placeholder="Ask me anything..."
                           value={input}
                           onChange={(e) => setInput(e.target.value)}
@@ -339,13 +436,13 @@ export default function ChatWidget() {
                       <button
                         onClick={send}
                         disabled={!input.trim() || loading}
-                        className="rounded-xl px-4 py-3 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all text-white flex items-center gap-2 shadow-lg shadow-purple-500/25"
+                        className="rounded-xl px-4 py-3 bg-console-amber hover:bg-console-amber/90 disabled:opacity-40 disabled:cursor-not-allowed transition-all text-console-bg flex items-center gap-2"
                       >
                         <Send className="w-4 h-4" />
                       </button>
                     </div>
-                    <div className="text-xs text-gray-500 mt-2 text-center">
-                      Crafted with love by Samir Patel ❤️
+                    <div className="text-xs text-console-faint mt-2 text-center">
+                      Crafted by Samir Patel
                     </div>
                   </div>
                 </>
@@ -362,17 +459,17 @@ export default function ChatWidget() {
           animate={{ scale: 1 }}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="group relative rounded-full p-4 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 shadow-xl shadow-purple-500/25 hover:shadow-purple-500/40 transition-all"
+          className="group relative rounded-full p-4 bg-console-amber hover:bg-console-amber/90 shadow-lg transition-all"
           onClick={() => {
-            sendGTMEvent({event: ANALYTICS_EVENTS.AI_CHAT_OPEN});
+            sendGTMEvent({ event: ANALYTICS_EVENTS.AI_CHAT_OPEN });
             setOpen(true);
           }}
         >
-          <MessageCircleQuestionMarkIcon className="w-6 h-6 text-white" />
-         
-          <div className="absolute -top-12 right-0 bg-slate-900 text-white text-xs px-3 py-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
-            Chat with SamzZ AI ✨
-            <div className="absolute -bottom-1 right-4 w-2 h-2 bg-slate-900 transform rotate-45" />
+          <MessageCircleQuestionMarkIcon className="w-6 h-6 text-console-bg" />
+
+          <div className="absolute -top-12 right-0 bg-console-panel border border-console-border text-console-text text-xs px-3 py-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+            Chat with SamzZ AI
+            <div className="absolute -bottom-1 right-4 w-2 h-2 bg-console-panel border-r border-b border-console-border transform rotate-45" />
           </div>
         </motion.button>
       )}
@@ -382,26 +479,26 @@ export default function ChatWidget() {
           width: 6px;
         }
         .custom-scrollbar::-webkit-scrollbar-track {
-          background: rgba(255, 255, 255, 0.05);
+          background: #12151c;
           border-radius: 10px;
         }
         .custom-scrollbar::-webkit-scrollbar-thumb {
-          background: rgba(255, 255, 255, 0.2);
+          background: #2a3040;
           border-radius: 10px;
         }
         .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-          background: rgba(255, 255, 255, 0.3);
+          background: #3d4250;
         }
-        
+
         /* Markdown content styling */
         .markdown-content {
           line-height: 1.6;
         }
-        
+
         .markdown-content > *:first-child {
           margin-top: 0;
         }
-        
+
         .markdown-content > *:last-child {
           margin-bottom: 0;
         }
